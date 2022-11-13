@@ -36,9 +36,17 @@ There is a glitch that occurs at every 0th second since our transition is set at
 To bypass it, we remove the `transition` property at the specified degrees (where glitch occurs) via JavaScript.
 
 ```
-if (secondsDegrees === 90) secondHand.style.transition = 'all 0s';
-else secondHand.style.transition = 'all 0.05s';
+if (secondsDegrees === 90) {
+    secondHand.style.transition = `all 0s`;
+} else {
+    secondHand.style.transition = `all 0.05s`;
+}
 
-if (minsDegrees === 90) minHand.style.transition = 'all 0s';
-else minHand.style.transition = 'all 0.1s';
+if (minsDegrees === 90) {
+    minHand.style.transition = `all 0s`;
+} else {
+    minuteHand.style.transition = `all 0.5s`;
+}
 ```
+
+In terms of customization, I changed the picture used by Wes into one with taken from a trip to Yunnan, China a few years ago. I also added styling and changed the colors of the clock hands to make it more appealing!
