@@ -37,6 +37,16 @@ function handleRangeUpdate() {
     // console.log(this.value)
 }
 
+function handleProgress() {
+    const percent = (video.currentTime / video.duration) * 100;
+    progressBar.style.flexBasis = `${percent}%`;
+}
+
+function scrub(e) {
+    console.log(e);
+    const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+    video.currentTime = scrubTime;
+}
 /* Hook up event listeners */
 
 //when click on video display, run togglePlay function
@@ -45,8 +55,8 @@ video.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
 //change button text when video is paused
 video.addEventListener('pause', updateButton);
-
-
+//update progress bar everytime video init timeupdate
+video.addEventListener('timeupdate', handleProgress);
 
 //when click on play/pause button, run togglePlay function
 toggle.addEventListener('click', togglePlay)
@@ -58,3 +68,12 @@ skipButtons.forEach(button => button.addEventListener('click', skip))
 //additional mousemove listner allows for real time update of this.value
 ranges.forEach(range => range.addEventListener('change', handleRangeUpdate))
 ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate))
+
+//when click on progress bar, run scrub function 
+//additional mousemove listner allows for real time update of offsetX
+let mousedown = false; 
+progress.addEventListener('click', scrub)
+//first, checks if mousedown variable is true, then moves on to scrub(e) /// if false, will return false and not do anything
+progress.addEventListener('mousemove', (e) => mousedown && scrub(e))
+progress.addEventListener('mousedown', () => mousedown = true);
+progress.addEventListener('mouseup', () => mousedown = false);
