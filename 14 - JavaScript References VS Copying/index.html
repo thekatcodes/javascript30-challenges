@@ -51,7 +51,7 @@
 
     // how do we take a copy instead?
     const cap2 = Object.assign({}, person, {number: 99, age: 12});
-    //^^^ start with {} blank object, then pass it the object we want to copy -> person, then 'fold in' the object properties we want to overwrite or add
+    //^^^ make shallow copy with aobjec.assing(), -> start with {} blank object, then pass it the object we want to copy -> person, then 'fold in' the object properties we want to overwrite or add
     console.log(cap2)
 
     // We will hopefully soon see the object ...spread
