@@ -25,6 +25,11 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
+    const team2 = players.slice();
+    // slice() if you don't pass it anything, will just make a copy of the original array
+    //slice(2,3) will give you either array index 2 or 3 and will leave the original array untouched
+    const team3 = [...players];
+    //also can use spread operator, will make a shallow copy of it as well
 
     // one way
 
@@ -45,6 +50,9 @@
     // and think we make a copy:
 
     // how do we take a copy instead?
+    const cap2 = Object.assign({}, person, {number: 99, age: 12});
+    //^^^ start with {} blank object, then pass it the object we want to copy -> person, then 'fold in' the object properties we want to overwrite or add
+    console.log(cap2)
 
     // We will hopefully soon see the object ...spread
 
